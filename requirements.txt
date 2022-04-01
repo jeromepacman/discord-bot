@@ -1,0 +1,7 @@
+discord.py
+dj-database-url
+Django
+djangorestframework
+python-dotenv
+requests
+

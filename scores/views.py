@@ -9,10 +9,10 @@ from .models import Score
 
 class UpdateScores(APIView):
 
-    def post(self, request):
+    def post(self, request, format=None):
         serializer = ScoreSerializer(data=request.data)
+        
         if serializer.is_valid():
-
             name = serializer.validated_data['name']
             points = serializer.validated_data['points']
 
@@ -28,7 +28,7 @@ class UpdateScores(APIView):
 
 class Leaderboard(APIView):
 
-    def get(self, request, formate=None, **kwargs):
+    def get(self, request, format=None):
         scores = Score.objects.all().order_by('-points')[:10]
         serializer = ScoreSerializer(scores, many=True)
         return Response(serializer.data)

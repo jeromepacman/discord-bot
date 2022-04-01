@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'quiz.apps.QuizConfig',
     'scores.apps.ScoresConfig',
-    'bot.apps.BotConfig',
 ]
 
 MIDDLEWARE = [

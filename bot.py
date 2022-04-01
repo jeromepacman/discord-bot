@@ -2,21 +2,21 @@ import discord
 import requests
 import json
 import asyncio
-import os
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-load_dotenv()
-BOT_TOKEN = os.getenv('BOT_TOKEN')
+#load_dotenv()
 
+BOT_TOKEN = 'OTUyOTE4MzI4Njg1NTI3MDQ0.Yi9AWQ._P1HV3Xe_LGRud53dzivOaJAoXM'
+#timeout = Question.chrono
 client = discord.Client()
 
 def get_score():
     leaderboard = ''
     id = 1
-    response = requests.get(url="http://127.0.0.1:8000/api/score/leaderboard/")
+    r = requests.get(url="http://127.0.0.1:8000/api/score/leaderboard/")
 
-    json_data = json.loads(response.text)
+    json_data = json.loads(r.text)
     for item in json_data:
         leaderboard += str(id) + ' ' + item['name'] + ". " + str(item['points']) + "\n"
         id += 1
@@ -34,8 +34,8 @@ def get_question():
     qs = ''
     id = 1
     answer = 0
-    response = requests.get("http://127.0.0.1:8000/api/random/")
-    json_data = json.loads(response.text)
+    r = requests.get("http://127.0.0.1:8000/api/random/")
+    json_data = json.loads(r.text)
     qs += "Question: \n"
     qs += json_data[0]['title'] + "\n\n"
 
@@ -48,6 +48,7 @@ def get_question():
     points = json_data[0]['points']
 
     return qs, answer, points
+
 
 @client.event
 async def on_message(message):
@@ -66,13 +67,13 @@ async def on_message(message):
             return m.content.isdigit() == True
 
         try:
-            guess = await client.wait_for('message', check=check, timeout=8.0)
+            guess = await client.wait_for('message', check=check, timeout=8)
         except asyncio.TimeoutError:
             return await message.channel.send('Temps écoulé !')
 
         if int(guess.content) == answer:
             user = guess.author
-            msg = str(guess.author.name) + ' valide +' + str(points) + ' points'
+            msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
             await message.channel.send(msg)
             update_score(user, points)
         else:
