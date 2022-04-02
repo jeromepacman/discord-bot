@@ -38,7 +38,7 @@ def get_question():
     qs = ''
     id = 1
     answer = 0
-    r = requests.get("http://127.0.0.1:8000/api/random/?format=api")
+    r = requests.get("https://127.0.0.1:8000/api/random/?format=api")
     json_data = json.loads(r.text)
 
     question_points = json_data[0]['question_points']
