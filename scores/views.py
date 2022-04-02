@@ -22,7 +22,7 @@ class UpdateScores(APIView):
 
             serializer.save()
 
-            return Response(None, status=status.HTTP_201_CREATED)
+            return Response(None, status=status.HTTP_201_CREATED)  
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

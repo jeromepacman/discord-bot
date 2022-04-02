@@ -14,4 +14,4 @@ class RandomQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['title', 'points', 'answer']
+        fields = ['title', 'question_points', 'chrono', 'answer']

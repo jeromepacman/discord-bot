@@ -10,7 +10,7 @@ class AnswerInlineModel(admin.TabularInline):
 
 @admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ['title', 'points', 'difficulty', 'chrono']
+    fields = ['title', 'question_points', 'difficulty', 'chrono']
     list_display = ['title', 'difficulty', 'updated_at', 'is_active']
     inlines = [AnswerInlineModel]
 
