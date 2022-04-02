@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+from tkinter.messagebox import QUESTION
 import discord
 import requests
 from discord.ext import commands
@@ -37,7 +38,7 @@ def get_question():
     qs = ''
     id = 1
     answer = 0
-    r = requests.get("http://127.0.0.1:8000/api/random/")
+    r = requests.get("http://127.0.0.1:8000/api/random/?format=api")
     json_data = json.loads(r.text)
 
     question_points = json_data[0]['question_points']
@@ -52,7 +53,6 @@ def get_question():
         if item['is_correct']:
             answer = id
         id += 1
-
     return qs, answer, question_points, chrono
 
 
