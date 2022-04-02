@@ -3,15 +3,14 @@ from django.db import models
 
 class Question(models.Model):
     LEVEL = (
-        (0, 'choisir'),
-        (1, 'Noobs'),
+        (0, '-----'),
+        (1, 'Noob'),
         (2, 'Medium'),
         (3, 'Advanced'),
         (4, 'Hero')
     )
 
     title = models.CharField("titre", max_length=200)
-    #points = models.SmallIntegerField("points")
     question_points = models.SmallIntegerField("points")
     difficulty = models.IntegerField("niveau", choices=LEVEL, default=0)
     chrono = models.SmallIntegerField("Temps max")
@@ -25,14 +24,14 @@ class Question(models.Model):
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, related_name='answer', verbose_name= "Question", on_delete=models.CASCADE)
-    answer = models.CharField(max_length=255)
+    answer = models.CharField("réponse", max_length=255)
     is_correct = models.BooleanField("correct", default=False)
     is_active = models.BooleanField("active", default=True)
     created_at = models.DateTimeField("création", auto_now_add=True)
     updated_at = models.DateTimeField("mise à jour", auto_now=True)
 
     class Meta:
-        verbose_name = "Reponses"
+        verbose_name = "Reponse"
 
     def __str__(self):
         return self.answer

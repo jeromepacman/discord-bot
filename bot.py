@@ -86,7 +86,7 @@ async def on_message(message):
             points = -points
             msg = str(guess.author.name) + ' ' + str(points) + ' points'
 
-    await message.channel.send(msg)
-    update_score(user, points)
+        await message.channel.send(msg)
+        update_score(user, points)
 
 client.run(BOT_TOKEN)
