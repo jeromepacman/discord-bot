@@ -1,7 +1,6 @@
 import asyncio
 import json
 import os
-
 import discord
 import requests
 from discord.ext import commands
@@ -12,9 +11,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 #test_ServerID = 958560848174010368
 
-#timeout = Question.chrono
 client = discord.Client()
-
 
 def get_score():
     leaderboard = ' '
@@ -23,7 +20,7 @@ def get_score():
 
     json_data = json.loads(r.text)
     for item in json_data:
-        leaderboard += str(id) + " —> " + \
+        leaderboard += str(id) + "  —> " + \
             item['name'] + "  " + str(item['points']) + " points" + "\n\n"
         id += 1
     return leaderboard
@@ -83,15 +80,13 @@ async def on_message(message):
         if int(guess.content) == answer:
             user = guess.author
             msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
-            await message.channel.send(msg)
-            update_score(user, points)
         else:
             await message.channel.send('mauvaise réponse')
             user = guess.author
             points = -points
             msg = str(guess.author.name) + ' ' + str(points) + ' points'
-            await message.channel.send(msg)
-            update_score(user, points)
 
+    await message.channel.send(msg)
+    update_score(user, points)
 
 client.run(BOT_TOKEN)
