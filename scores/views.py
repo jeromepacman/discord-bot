@@ -3,11 +3,12 @@ from .serializers import ScoreSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import F
-from django.views.decorators.csrf import csrf_exempt
 from .models import Score
 
-@csrf_exempt
 class UpdateScores(APIView):
+
+    permission_classes = ()
+    authentication_classes = ()
 
     def post(self, request, format=None):
         serializer = ScoreSerializer(data=request.data)
@@ -25,8 +26,11 @@ class UpdateScores(APIView):
             return Response(None, status=status.HTTP_201_CREATED)  
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
+
 class Leaderboard(APIView):
+
+    permission_classes = ()
+    authentication_classes = ()
 
     def get(self, request, format=None):
         scores = Score.objects.all().order_by('-points')[:10]

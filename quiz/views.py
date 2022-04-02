@@ -2,11 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Question
 from .serializers import RandomQuestionSerializer
-from django.views.decorators.csrf import csrf_exempt
 
 
-@csrf_exempt
+
 class RandomQuestion(APIView):
+
+    permission_classes = ()
+    authentication_classes = ()
 
     def get(self, request, format=None):
         #choose = random.choices(Question.objects.db)

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 from quiz.views import RandomQuestion
 from scores.views import UpdateScores, Leaderboard
 
