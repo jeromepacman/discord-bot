@@ -49,11 +49,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'discord_bot.urls'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'https://discord-bot-binance.herokuapp.com/'
-]
+CORS_ALLOW_ALL_ORIGINS: True
+
 
 TEMPLATES = [
     {
