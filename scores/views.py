@@ -5,14 +5,12 @@ from rest_framework import status
 from django.db.models import F
 from .models import Score
 
-class UpdateScores(APIView):
 
-    permission_classes = ()
-    authentication_classes = ()
+class UpdateScores(APIView):
 
     def post(self, request, format=None):
         serializer = ScoreSerializer(data=request.data)
-        
+
         if serializer.is_valid():
             name = serializer.validated_data['name']
             points = serializer.validated_data['points']
@@ -23,7 +21,7 @@ class UpdateScores(APIView):
 
             serializer.save()
 
-            return Response(None, status=status.HTTP_201_CREATED)  
+            return Response(None, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

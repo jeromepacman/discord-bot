@@ -2,12 +2,17 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Question
 from .serializers import RandomQuestionSerializer
-import random
-
+from django.views.generic import TemplateView
 
 class RandomQuestion(APIView):
 
-    def get(self, request, format=None, **kwargs):
+    def get(self, request):
         question = Question.objects.filter().order_by('?')[:1]
         serializer = RandomQuestionSerializer(question, many=True)
         return Response(serializer.data)
+
+
+class IndexView(TemplateView):
+    
+    template_name = 'index.html'
+

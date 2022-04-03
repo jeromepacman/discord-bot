@@ -1,7 +1,6 @@
 import asyncio
 import json
 import os
-from tkinter.messagebox import QUESTION
 import discord
 import requests
 from discord.ext import commands
