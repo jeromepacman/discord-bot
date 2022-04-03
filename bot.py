@@ -16,7 +16,7 @@ client = discord.Client()
 def get_score():
     leaderboard = ' '
     id = 1
-    r = requests.get(url="http://127.0.0.1:8000/api/score/leaderboard/")
+    r = requests.get(url="https://discord-bot-binance.herokuapp.com/leaderboard")
 
     json_data = json.loads(r.text)
     for item in json_data:
@@ -27,7 +27,7 @@ def get_score():
 
 
 def update_score(user, points):
-    url = "http://127.0.0.1:8000/api/score/update/"
+    url = "https://discord-bot-binance.herokuapp.com/score/update/"
     new_score = {'name': user, 'points': points}
     x = requests.post(url, data=new_score)
     return
@@ -37,7 +37,7 @@ def get_question():
     qs = ''
     id = 1
     answer = 0
-    r = requests.get("https://127.0.0.1:8000/api/random/?format=api")
+    r = requests.get("https://discord-bot-binance.herokuapp.com/api/random")
     json_data = json.loads(r.text)
 
     question_points = json_data[0]['question_points']
