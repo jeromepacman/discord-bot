@@ -11,13 +11,12 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 #test_ServerID = 958560848174010368
 
-
 client = discord.Client()
 
 def get_score():
-    leaderboard = ' '
+    leaderboard = ''
     id = 1
-    r = requests.get(url="https://discord-bot-binance.herokuapp.com/leaderboard/")
+    r = requests.get(url="https://discord-bot-binance.herokuapp.com/api/score/leaderboard/")
 
     json_data = json.loads(r.text)
     for item in json_data:
