@@ -11,6 +11,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 #test_ServerID = 958560848174010368
 
+
 client = discord.Client()
 
 def get_score():
