@@ -17,7 +17,7 @@ client = discord.Client()
 def get_score():
     leaderboard = ' '
     id = 1
-    r = requests.get(url="https://discord-bot-binance.herokuapp.com/leaderboard")
+    r = requests.get(url="https://discord-bot-binance.herokuapp.com/leaderboard/")
 
     json_data = json.loads(r.text)
     for item in json_data:
@@ -44,8 +44,8 @@ def get_question():
     question_points = json_data[0]['question_points']
     chrono = json_data[0]['chrono']
 
-    qs += "Question — " + str(question_points) + \
-        " points -  " + str(chrono) + " sec " + "\n\n\n"
+    qs += "**Question** — " + str(question_points) + \
+        " points -  " + str(chrono) + " sec " + "\n\n"
     qs += json_data[0]['title'] + "\n\n"
 
     for item in json_data[0]['answer']:

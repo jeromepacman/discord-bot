@@ -27,9 +27,6 @@ class UpdateScores(APIView):
 
 class Leaderboard(APIView):
 
-    permission_classes = ()
-    authentication_classes = ()
-
     def get(self, request, format=None):
         scores = Score.objects.all().order_by('-points')[:10]
         serializer = ScoreSerializer(scores, many=True)
