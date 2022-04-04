@@ -70,22 +70,24 @@ async def on_message(message):
         await message.channel.send(qs)
 
         def check(m):
-            return m.content.isdigit() == True
+            return m.author == message.author and m.content.isdigit() == True
 
         try:
             guess = await client.wait_for('message', check=check, timeout=chrono)
         except asyncio.TimeoutError:
             return await message.channel.send('Temps écoulé!')
+            
         if int(guess.content) == answer:
             user = guess.author
             msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
+            await message.channel.send(msg)
+            update_score(user, points)
         else:
             await message.channel.send('mauvaise réponse')
             user = guess.author
             points = -points
             msg = str(guess.author.name) + ' ' + str(points) + ' points'
-
-        await message.channel.send(msg)
-        update_score(user, points)
+            await message.channel.send(msg)
+            update_score(user, points)
 
 client.run(BOT_TOKEN)
