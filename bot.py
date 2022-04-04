@@ -27,7 +27,7 @@ def get_score():
 
 
 def update_score(user, points):
-    url = "https://discord-bot-binance.herokuapp.com/score/update/"
+    url = "https://discord-bot-binance.herokuapp.com/api/score/update/"
     new_score = {'name': user, 'points': points}
     x = requests.post(url, data=new_score)
     return
@@ -66,7 +66,7 @@ async def on_message(message):
         await message.channel.send(leaderboard)
 
     if message.content.startswith('!quiz'):
-        qs, answer, points, chrono = get_question()
+        qs, answer,  points, chrono = get_question()
         await message.channel.send(qs)
 
         def check(m):
@@ -76,7 +76,7 @@ async def on_message(message):
             guess = await client.wait_for('message', check=check, timeout=chrono)
         except asyncio.TimeoutError:
             return await message.channel.send('Temps écoulé!')
-            
+
         if int(guess.content) == answer:
             user = guess.author
             msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
