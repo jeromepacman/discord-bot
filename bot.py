@@ -80,14 +80,14 @@ async def on_message(message):
         if int(guess.content) == answer:
             user = guess.author
             msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
-            await message.channel.send(msg)
-            update_score(user, points)
+            
         else:
             await message.channel.send('mauvaise réponse')
             user = guess.author
             points = -points
             msg = str(guess.author.name) + ' ' + str(points) + ' points'
-            await message.channel.send(msg)
-            update_score(user, points)
+            
+        await message.channel.send(msg)
+        update_score(user, points)
 
 client.run(BOT_TOKEN)
