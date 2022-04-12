@@ -13,15 +13,17 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 client = discord.Client()
 
+
 def get_score():
     leaderboard = ''
     id = 1
-    r = requests.get(url="https://discord-bot-binance.herokuapp.com/api/score/leaderboard/")
+    r = requests.get(
+        url="https://discord-bot-binance.herokuapp.com/api/score/leaderboard/")
 
     json_data = json.loads(r.text)
     for item in json_data:
         leaderboard += str(id) + "  —> " + \
-            item['name'] + "  " + str(item['points']) + " points" + "\n\n"
+            item['name'] + "  " + str(item['points']) + " points" + "\n"
         id += 1
     return leaderboard
 
@@ -43,7 +45,7 @@ def get_question():
     question_points = json_data[0]['question_points']
     chrono = json_data[0]['chrono']
 
-    qs += "**Question** — " + str(question_points) + \
+    qs += "**Question** —  " + str(question_points) + \
         " points -  " + str(chrono) + " sec " + "\n\n"
     qs += json_data[0]['title'] + "\n\n"
 
@@ -66,7 +68,7 @@ async def on_message(message):
         await message.channel.send(leaderboard)
 
     if message.content.startswith('!quiz'):
-        qs, answer,  points, chrono = get_question()
+        qs, answer, points, chrono = get_question()
         await message.channel.send(qs)
 
         def check(m):
@@ -79,14 +81,15 @@ async def on_message(message):
 
         if int(guess.content) == answer:
             user = guess.author
-            msg = str(guess.author.name) + ' valide ' + str(points) + ' points'
-            
+            msg = 'Bonne réponse \n' + \
+                str(guess.author.name) + ' valide ' + str(points) + ' points'
+
         else:
             await message.channel.send('mauvaise réponse')
             user = guess.author
             points = -points
             msg = str(guess.author.name) + ' ' + str(points) + ' points'
-            
+
         await message.channel.send(msg)
         update_score(user, points)
 
