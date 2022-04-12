@@ -20,6 +20,8 @@ def get_score():
     r = requests.get(
         url="https://discord-bot-binance.herokuapp.com/api/score/leaderboard/")
 
+    json_data = json.loads(r.text)
+
     for item in json_data:
         leaderboard += str(id) + "  —> " + \
             "**" + item['name'].split('#')[0] + "  " + \
