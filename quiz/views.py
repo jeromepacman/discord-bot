@@ -4,6 +4,7 @@ from .models import Question
 from .serializers import RandomQuestionSerializer
 from django.views.generic import TemplateView
 
+
 class RandomQuestion(APIView):
 
     def get(self, request, format=None, **kwargs):
@@ -13,6 +14,4 @@ class RandomQuestion(APIView):
 
 
 class IndexView(TemplateView):
-    
     template_name = 'index.html'
-

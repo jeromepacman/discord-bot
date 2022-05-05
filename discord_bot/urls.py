@@ -13,4 +13,3 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('', IndexView.as_view(), name='index'),
 ]
-

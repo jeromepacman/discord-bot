@@ -1,0 +1,9 @@
+{
+	"python.linting.prospectorEnabled": false,
+	"python.terminal.activateEnvInCurrentTerminal": true,
+	"workbench.editor.enablePreview": true,
+	"editor.codeActionsOnSave": {},
+	"workbench.colorTheme": "Atom One Darker",
+	"workbench.iconTheme": "material-icon-theme",
+	"python.linting.enabled": false
+}

@@ -10,10 +10,10 @@ class Question(models.Model):
         (4, 'Hero')
     )
 
-    title = models.CharField("titre", max_length=200)
-    question_points = models.SmallIntegerField("points")
+    title = models.CharField("titre", max_length=128)
+    question_points = models.IntegerField("points")
     difficulty = models.IntegerField("niveau", choices=LEVEL, default=0)
-    chrono = models.SmallIntegerField("Temps max")
+    chrono = models.IntegerField("Temps max")
     is_active = models.BooleanField("active", default=True)
     created_at = models.DateTimeField("création", auto_now_add=True)
     updated_at = models.DateTimeField("Mise à jour", auto_now=True)
@@ -23,15 +23,15 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, related_name='answer', verbose_name= "Question", on_delete=models.CASCADE)
-    answer = models.CharField("réponse", max_length=255)
+    question = models.ForeignKey(Question, related_name='answer', verbose_name="Question", on_delete=models.CASCADE)
+    answer = models.CharField("réponse", max_length=64)
     is_correct = models.BooleanField("correct", default=False)
     is_active = models.BooleanField("active", default=True)
     created_at = models.DateTimeField("création", auto_now_add=True)
     updated_at = models.DateTimeField("mise à jour", auto_now=True)
 
     class Meta:
-        verbose_name = "Reponse"
+        verbose_name = "Réponse"
 
     def __str__(self):
         return self.answer
