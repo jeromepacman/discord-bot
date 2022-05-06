@@ -10,7 +10,7 @@ class Question(models.Model):
         (4, 'Hero')
     )
 
-    title = models.CharField("titre", max_length=128)
+    title = models.CharField("titre", max_length=255)
     question_points = models.IntegerField("points")
     difficulty = models.IntegerField("niveau", choices=LEVEL, default=0)
     chrono = models.IntegerField("Temps max")

@@ -8,7 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-# test_ServerID = 958560848174010368
+SCORE_URL = os.getenv('SCORE_URL')
+UP_URL = os.getenv('UP_URL')
+QUESTION_URL = os.getenv('QUESTION_URL')
+# test_ServerID = 95856084817401036
 
 client = discord.Client()
 
@@ -16,8 +19,7 @@ client = discord.Client()
 def get_score():
     leaderboard = ""
     id = 1
-    r = requests.get(
-        url="https://discord-bot-binance.herokuapp.com/api/score/leaderboard/")
+    r = requests.get(SCORE_URL)
 
     json_data = json.loads(r.text)
 
@@ -37,7 +39,7 @@ def get_score():
 
 
 def update_score(user, points):
-    url = "https://discord-bot-binance.herokuapp.com/api/score/update/"
+    url = UP_URL
     new_score = {"name": user, "points": points}
     try:
         requests.post(url, data=new_score)
@@ -52,7 +54,7 @@ def get_question():
     qs = ""
     id = 1
     answer = 0
-    r = requests.get("https://discord-bot-binance.herokuapp.com/api/random")
+    r = requests.get(QUESTION_URL)
     json_data = json.loads(r.text)
     question_points = json_data[0]["question_points"]
     chrono = json_data[0]["chrono"]
