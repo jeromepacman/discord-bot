@@ -11,7 +11,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 SCORE_URL = os.getenv('SCORE_URL')
 UP_URL = os.getenv('UP_URL')
 QUESTION_URL = os.getenv('QUESTION_URL')
-board = f'•´¯•. Quizz Board .•´¯•'
+board = f'**•´¯•. Quizz Board .•´¯•**'
 userboard = f'ıllıllı Quizz Board ıllıllı\n'
 # test_ServerID = 95856084817401036
 
@@ -28,12 +28,11 @@ def get_score():
         leaderboard += (
                 str(id)
                 + "  —> "
-                + "**"
                 + item["name"].split("#")[0]
                 + "  "
                 + str(item["points"])
                 + " "
-                + "** \n"
+                + " \n"
         )
         id += 1
     return f'*{board}* \n\n {leaderboard}'
@@ -64,7 +63,8 @@ def get_question():
 
     qs += (
             "**— Question —** "
-            + f" Niveau : {difficulty}"
+            + " Niveau :   "
+            + str(difficulty)
             + "    💠 "
             + str(question_points)
             + " points   ⌚ ️"
@@ -101,7 +101,7 @@ async def on_message(message):
         await message.channel.send(leaderboard)
 
     if message.content.startswith("!quiz"):
-        qs, answer, question_points, chrono = get_question()
+        (qs, answer, question_points, chrono, difficulty) = get_question()
         await message.channel.send(qs)
 
         def check(m):
