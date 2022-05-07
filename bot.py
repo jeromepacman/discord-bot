@@ -11,6 +11,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 SCORE_URL = os.getenv('SCORE_URL')
 UP_URL = os.getenv('UP_URL')
 QUESTION_URL = os.getenv('QUESTION_URL')
+board = f'•´¯•. Quizz Board .•´¯•'
+userboard = f'ıllıllı Quizz Board ıllıllı\n'
 # test_ServerID = 95856084817401036
 
 client = discord.Client()
@@ -22,7 +24,6 @@ def get_score():
     r = requests.get(SCORE_URL)
 
     json_data = json.loads(r.text)
-
     for item in json_data:
         leaderboard += (
                 str(id)
@@ -35,7 +36,7 @@ def get_score():
                 + "** \n"
         )
         id += 1
-    return leaderboard
+    return f'*{board}* \n\n {leaderboard}'
 
 
 def update_score(user, points):
@@ -56,17 +57,22 @@ def get_question():
     answer = 0
     r = requests.get(QUESTION_URL)
     json_data = json.loads(r.text)
+
+    difficulty = json_data[0]["difficulty"]
     question_points = json_data[0]["question_points"]
     chrono = json_data[0]["chrono"]
 
     qs += (
-            "**Question** —  "
+            "**— Question —** "
+            + f" Niveau : {difficulty}"
+            + "    💠 "
             + str(question_points)
-            + " points -  "
+            + " points   ⌚ ️"
             + str(chrono)
-            + " sec "
+            + " _sec.._"
             + "\n\n"
     )
+
     qs += json_data[0]["title"] + "\n\n"
 
     for item in json_data[0]["answer"]:
@@ -87,6 +93,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.content.startswith("!ok"):
+        await message.channel.send(f'Hi {message.author}')
+
     if message.content.startswith("!score"):
         leaderboard = get_score()
         await message.channel.send(leaderboard)
@@ -101,12 +110,12 @@ async def on_message(message):
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
         except asyncio.TimeoutError:
-            return await message.channel.send("\n *Trop tard* ")
+            return await message.channel.send("\n \n *Trop tard* ")
 
         if int(guess.content) == answer:
             user = guess.author
             msg = (
-                    "Bonne réponse  🥳\n"
+                    "Bonne réponse  ✅\n"
                     + str(guess.author.name)
                     + " valide "
                     + str(question_points)
@@ -117,7 +126,7 @@ async def on_message(message):
 
         else:
             user = guess.author
-            msg = ("Mauvaise réponse  🥴\n"
+            msg = ("Mauvaise réponse  🥴\n\n"
                    + str(guess.author.name)
                    + " perd " +
                    str(question_points)

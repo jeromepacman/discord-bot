@@ -27,6 +27,6 @@ class UpdateScores(APIView):
 class Leaderboard(APIView):
 
     def get(self, request):
-        scores = Score.objects.all().order_by('-points')[:10]
+        scores = Score.objects.order_by('-points')[:10]
         serializer = ScoreSerializer(scores, many=True)
         return Response(serializer.data)
