@@ -64,7 +64,7 @@ def get_question():
     qs += (
             "**— Question —** "
             + " Niveau :   "
-            + str(difficulty)
+            + difficulty
             + "    💠 "
             + str(question_points)
             + " points   ⌚ ️"
