@@ -57,7 +57,7 @@ def get_question():
     r = requests.get(QUESTION_URL)
     json_data = json.loads(r.text)
 
-    difficulty = json_data[0]["difficulty"]
+    difficulty = json_data[0]["get_difficulty_display"]
     question_points = json_data[0]["question_points"]
     chrono = json_data[0]["chrono"]
 
