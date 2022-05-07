@@ -80,7 +80,7 @@ def get_question():
         if item["is_correct"]:
             answer = id
         id += 1
-    return qs, answer, question_points, chrono
+    return qs, answer, question_points, chrono, difficulty
 
 
 @client.event
