@@ -31,8 +31,9 @@ class UpdateScores(APIView):
             if Score.objects.filter(name=name).exists():
                 serializer = Score.objects.get(name=name)
                 serializer.points = F('points') + points
-
-            serializer.save()
+                if points <= 0:
+                    serializer.points = int(0)
+                serializer.save()
 
             return Response(None, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

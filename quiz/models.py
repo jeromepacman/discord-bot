@@ -39,7 +39,7 @@ class Answer(models.Model):
 
 class Score(models.Model):
     name = models.CharField("nom", max_length=100)
-    points = models.PositiveIntegerField("points")
+    points = models.IntegerField("points", default=0)
 
     def __str__(self):
         return self.name

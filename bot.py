@@ -42,13 +42,8 @@ def get_score():
 def update_score(user, points):
     url = UP_URL
     new_score = {"name": user, "points": points}
-    try:
-        requests.post(url, data=new_score)
-    except ValueError:
-        points = None
-        return points
-    else:
-        return
+    requests.post(url, data=new_score)
+    return
 
 
 def get_question():
@@ -134,7 +129,7 @@ async def on_message(message):
                     + " perd " +
                     str(question_points)
                     + " points 🥴")
-            points = - int(question_points)
+            points = -question_points
             await message.channel.send(msg)
             update_score(user, points)
 
