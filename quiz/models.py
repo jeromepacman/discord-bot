@@ -19,13 +19,13 @@ class Question(models.Model):
     updated_at = models.DateTimeField("Mise à jour", auto_now=True)
 
     def __str__(self):
-        return "self.title"
+        return self.title
 
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, related_name="answer", verbose_name="Question", on_delete=models.CASCADE)
     answer = models.CharField("réponse", max_length=100)
-    is_correct = models.BooleanField("correct", default=False)
+    is_correct = models.BooleanField("correcte", default=False)
     is_active = models.BooleanField("active", default=True)
     created_at = models.DateTimeField("création", auto_now_add=True)
     updated_at = models.DateTimeField("mise à jour", auto_now=True)
