@@ -5,13 +5,14 @@ import discord
 import requests
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SCORE_URL = os.getenv('SCORE_URL')
 UP_URL = os.getenv('UP_URL')
 QUESTION_URL = os.getenv('QUESTION_URL')
-board = f'**•´¯•. Quizz Board .•´¯•**'
+board = f'**•´¯• Quizz Board •´¯•**'
 userboard = f'ıllıllı Quizz Board ıllıllı\n'
 # test_ServerID = 95856084817401036
 
@@ -94,7 +95,7 @@ async def on_message(message):
         return
 
     if message.content.startswith("!ok"):
-        await message.channel.send(f'Hi {message.author}')
+        await message.channel.send(f'Hey {message.author}')
 
     if message.content.startswith("!score"):
         leaderboard = get_score()
@@ -110,8 +111,9 @@ async def on_message(message):
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
         except asyncio.TimeoutError:
-            return await message.channel.send("\n \n *Trop tard* ")
+            return await message.channel.send("\n \n *Trop tard...* ")
 
+        await guess.delete(delay=10)
         if int(guess.content) == answer:
             user = guess.author
             msg = (
