@@ -50,10 +50,7 @@ venv/
 # Secrets
 secrets.json
 ### Python template
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+
 
 # C extensions
 *.so
@@ -84,31 +81,10 @@ MANIFEST
 *.manifest
 *.spec
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
 *.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
 
-# Translations
-*.mo
-*.pot
 
-# Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 gitdb.sqlite3-journal
@@ -120,19 +96,13 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
 .pybuilder/
 target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# IPython
-profile_default/
-ipython_config.py
+
 .idea
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
@@ -159,9 +129,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
-env/
-venv/
-ENV/
+
 env.bak/
 venv.bak/
 
