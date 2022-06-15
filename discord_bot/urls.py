@@ -10,7 +10,6 @@ urlpatterns = [
     path('api/random/', RandomQuestion.as_view(), name='random'),
     path('api/score/update/', UpdateScores.as_view(), name='score_update'),
     path('api/score/leaderboard/', Leaderboard.as_view(), name='leaderboard'),
-    path('__debug__/', include('debug_toolbar.urls')),
     path('', IndexView.as_view(), name='index'),
 
 ]

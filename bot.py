@@ -134,7 +134,7 @@ async def on_message(message):
                     + " perd " +
                     str(question_points)
                     + " points 🥴")
-            points = -question_points
+            points = - int(question_points)
             await message.channel.send(msg)
             update_score(user, points)
 
