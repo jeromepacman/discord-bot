@@ -111,7 +111,7 @@ async def on_message(message):
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
         except asyncio.TimeoutError:
-            return await message.channel.send("\n \n *Trop tard...* ")
+            return await message.channel.send("\n\n *Trop tard* 💤")
 
         await guess.delete(delay=10)
         if int(guess.content) == answer:
@@ -121,18 +121,19 @@ async def on_message(message):
                     + str(guess.author.name)
                     + " valide "
                     + str(question_points)
-                    + " points")
+                    + " points 😎")
             points = question_points
             await message.channel.send(msg)
             update_score(user, points)
 
         else:
             user = guess.author
-            msg = ("Mauvaise réponse  🥴\n\n"
-                   + str(guess.author.name)
-                   + " perd " +
-                   str(question_points)
-                   + " points")
+            msg = (
+                    "Mauvaise réponse 🔻\n"
+                    + str(guess.author.name)
+                    + " perd " +
+                    str(question_points)
+                    + " points 🥴")
             points = -question_points
             await message.channel.send(msg)
             update_score(user, points)

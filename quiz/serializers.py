@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Answer, Question
+from .models import Answer, Question, Score
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -15,3 +15,9 @@ class RandomQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ['title', 'get_difficulty_display', 'question_points', 'chrono', 'answer']
+
+
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score
+        fields = ['name', 'points']

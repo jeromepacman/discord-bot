@@ -35,3 +35,11 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.answer
+
+
+class Score(models.Model):
+    name = models.CharField("nom", max_length=100)
+    points = models.PositiveIntegerField("points")
+
+    def __str__(self):
+        return self.name

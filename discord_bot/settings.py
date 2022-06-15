@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'debug_toolbar',
     'quiz.apps.QuizConfig',
-    'scores.apps.ScoresConfig',
+
 ]
 
 MIDDLEWARE = [

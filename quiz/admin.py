@@ -17,3 +17,8 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(models.Answer)
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ["answer", "is_correct", "question"]
+
+
+@admin.register(models.Score)
+class ScoreAdmin(admin.ModelAdmin):
+    list_display = ['name', 'points']

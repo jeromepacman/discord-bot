@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from quiz.views import RandomQuestion, IndexView
-from scores.views import UpdateScores, Leaderboard
+from quiz.views import RandomQuestion, UpdateScores, Leaderboard, IndexView
 
 admin.site.site_header = 'Binance Quiz'
 
