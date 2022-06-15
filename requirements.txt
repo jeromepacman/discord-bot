@@ -21,3 +21,4 @@ typing_extensions==4.2.0
 urllib3==1.26.9
 whitenoise==6.0.0
 yarl==1.7.2
+django-debug-toolbar
