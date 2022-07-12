@@ -9,7 +9,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class RandomQuestionSerializer(serializers.ModelSerializer):
-
     answer = AnswerSerializer(many=True, read_only=True)
 
     class Meta:
