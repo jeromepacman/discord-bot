@@ -117,6 +117,8 @@ async def on_message(message):
                     + " valide "
                     + str(question_points)
                     + " points 😎")
+            if difficulty == "Hero":
+                await message.channel.send(file=discord.File("staticfiles/count_sized.gif"))
             points = question_points
             await message.channel.send(msg)
             update_score(user, points)
