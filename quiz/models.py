@@ -3,10 +3,10 @@ from django.db import models
 
 class Question(models.Model):
     LEVEL = (
-        (0,  "-----"),
-        (1, "Noob"),
-        (2, "Medium"),
-        (3, "Advanced"),
+        (0, "-----"),
+        (1, "Débutant"),
+        (2, "Intermédiaire"),
+        (3, "Avancé"),
         (4, "Hero")
     )
 
@@ -24,7 +24,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, related_name="answer", verbose_name="Question", on_delete=models.CASCADE)
-    answer = models.CharField("réponse", max_length=100)
+    answer = models.CharField("réponse", max_length=150)
     is_correct = models.BooleanField("correcte", default=False)
     is_active = models.BooleanField("active", default=True)
     created_at = models.DateTimeField("création", auto_now_add=True)

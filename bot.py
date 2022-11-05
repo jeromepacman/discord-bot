@@ -101,7 +101,7 @@ async def on_message(message):
         await message.channel.send(qs)
 
         def check(m):
-            return m.author == message.author and m.content.isdigit()
+            return m.author == m.content.isdigit()
 
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
