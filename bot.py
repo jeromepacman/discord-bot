@@ -80,11 +80,6 @@ def get_question():
 
 
 @client.event
-async def on_ready():
-    print("logged in {0.user}".format(client))
-
-
-@client.event
 async def on_message(message):
     if message.author == client.user:
         return
@@ -101,7 +96,7 @@ async def on_message(message):
         await message.channel.send(qs)
 
         def check(m):
-            return m.author == m.content.isdigit()
+            return m.author == message.author and m.content.isdigit()
 
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
