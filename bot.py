@@ -5,7 +5,6 @@ import discord
 import requests
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -50,6 +49,7 @@ def get_question():
     qs = ""
     id = 1
     answer = 0
+
     r = requests.get(QUESTION_URL)
     json_data = json.loads(r.text)
 
@@ -76,6 +76,7 @@ def get_question():
         if item["is_correct"]:
             answer = id
         id += 1
+
     return qs, answer, question_points, chrono, difficulty
 
 
@@ -96,14 +97,13 @@ async def on_message(message):
         await message.channel.send(qs)
 
         def check(m):
-            return m.author == message.author and m.content.isdigit()
+            return m.content.isdigit() == True
 
         try:
             guess = await client.wait_for("message", check=check, timeout=chrono)
         except asyncio.TimeoutError:
             return await message.channel.send("\n\n *Trop tard* 💤")
 
-        await guess.delete(delay=10)
         if int(guess.content) == answer:
             user = guess.author
             msg = (
@@ -116,6 +116,7 @@ async def on_message(message):
                 await message.channel.send(file=discord.File("staticfiles/count_sized.gif"))
             points = question_points
             await message.channel.send(msg)
+            await guess.delete(delay=10)
             update_score(user, points)
 
         else:
@@ -128,6 +129,7 @@ async def on_message(message):
                     + " points 🥴")
             points = -question_points
             await message.channel.send(msg)
+            await guess.delete(delay=10)
             update_score(user, points)
 
 
